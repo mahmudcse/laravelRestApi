@@ -60,6 +60,12 @@ class ProductController extends Controller
         return $product;
     }
 
+    public function restore(Request $request, $id){
+        Product::withTrashed()->find($id)->restore();
+        $product = Product::find($id);
+        return $product;
+    }
+
     /**
      * Remove the specified resource from storage.
      *

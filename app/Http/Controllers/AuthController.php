@@ -8,6 +8,7 @@ use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 
 
+
 class AuthController extends Controller
 {
     public function register(Request $request)
@@ -34,13 +35,16 @@ class AuthController extends Controller
         return response($response, 201);
     }
 
-    public function logout(Request $request)
+    public function logout(User $user)
     {
+        
         auth()->user()->tokens()->delete();
+        // $user->tokens()->delete();
 
         return [
             'message' => 'Logged out'
         ];
+        
     }
 
     public function login(Request $request)
